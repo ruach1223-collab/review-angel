@@ -1,1520 +1,1082 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>리뷰천사 - AI가 답변을 쓰고, 사람이 마음을 잡습니다</title>
-    <meta name="description" content="이커머스 셀러를 위한 리뷰·문의·배송 CS 자동 처리 + 전문 상담사 전화 대응. 쿠팡, 스마트스토어, 11번가, 카페24 지원. 14일 무료 체험.">
-    <meta name="keywords" content="리뷰 자동 답변, 이커머스 CS 대행, 쿠팡 리뷰, 스마트스토어 리뷰, 배송문의 자동응답, 리뷰천사">
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.review1004.co.kr/">
-    <!-- Open Graph -->
-    <meta property="og:title" content="리뷰천사 - 리뷰, 문의, 전화 — 이제 안 하셔도 됩니다">
-    <meta property="og:description" content="리뷰·문의·배송 CS 자동 처리 + 전문 상담사 전화 대응. 14일 무료 체험.">
-    <meta property="og:image" content="https://www.review1004.co.kr/angel-logo.png">
-    <meta property="og:url" content="https://www.review1004.co.kr/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ko_KR">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="리뷰천사 - 리뷰, 문의, 전화 — 이제 안 하셔도 됩니다">
-    <meta name="twitter:description" content="리뷰, 문의, 전화 — 이제 안 하셔도 됩니다. 5분 안에 답변 완료 + 전문 상담사. 14일 무료 체험.">
-    <meta name="twitter:image" content="https://www.review1004.co.kr/angel-logo.png">
-    <!-- 폰트 (렌더블로킹 방지) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
-    <link rel="icon" href="angel-logo.png" type="image/png">
-    <style>
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --accent: #FF9B7B;
-            --accent-light: rgba(255,155,123,0.08);
-            --dark: #111111;
-            --gray: #666666;
-            --light-gray: #FAFAFA;
-            --border: #E5E5E5;
-            --white: #FFFFFF;
-            --red: #FF4D4D;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', -apple-system, sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            background: var(--white);
-        }
-
-        /* 네비게이션 */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(10px);
-            padding: 14px 0;
-            z-index: 1000;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .nav-inner {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--dark);
-            text-decoration: none;
-        }
-
-        .logo-angel {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-        }
-
-        .logo em {
-            font-style: normal;
-            color: var(--accent);
-        }
-
-        .nav-links { display: flex; align-items: center; gap: 24px; }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gray);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover { color: var(--dark); }
-
-        .nav-cta {
-            background: var(--dark) !important;
-            color: white !important;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: 600 !important;
-        }
-
-        /* ========================================
-           히어로 — v2 개선
-           ======================================== */
-        .hero {
-            padding: 120px 24px 0;
-            background: linear-gradient(180deg, #FFF8F5 0%, #FFFFFF 100%);
-            overflow: hidden;
-        }
-
-        .hero-inner {
-            max-width: 720px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        @keyframes badge-shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: linear-gradient(90deg, #fff 30%, #FFF0EB 50%, #fff 70%);
-            background-size: 200% 100%;
-            animation: badge-shimmer 3s ease-in-out infinite;
-            color: var(--accent);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            border: 1.5px solid rgba(255,155,123,0.3);
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 900;
-            line-height: 1.35;
-            margin-bottom: 20px;
-            color: var(--dark);
-            letter-spacing: -0.5px;
-        }
-
-        .hero h1 em {
-            font-style: normal;
-            color: var(--white);
-            background: var(--dark);
-            padding: 2px 12px;
-            border-radius: 6px;
-            display: inline-block;
-        }
-
-        .hero-sub {
-            font-size: 17px;
-            color: var(--gray);
-            margin: 0 0 32px;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 0;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            background: var(--dark);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-        }
-
-        .btn-primary:hover {
-            background: #333;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary {
-            background: var(--white);
-            color: var(--gray);
-            padding: 16px 32px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            border: 1.5px solid var(--border);
-        }
-
-        .btn-secondary:hover { color: var(--dark); border-color: var(--dark); }
-
-        /* 통계 — 히어로 안으로 통합 */
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            margin: 40px auto 0;
-            max-width: 560px;
-            background: var(--white);
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            overflow: hidden;
-        }
-
-        .hero-stat {
-            flex: 1;
-            text-align: center;
-            padding: 20px 12px;
-            border-right: 1px solid var(--border);
-        }
-
-        .hero-stat:last-child { border-right: none; }
-
-        .hero-stat-num {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--dark);
-        }
-
-        .hero-stat-label {
-            font-size: 11px;
-            color: var(--gray);
-            margin-top: 2px;
-            font-weight: 500;
-        }
-
-        /* 플랫폼 배지 — 강화 */
-        .platform-section {
-            padding: 32px 24px 40px;
-            text-align: center;
-            background: var(--white);
-        }
-
-        .platform-label {
-            font-size: 12px;
-            color: #bbb;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-
-        .platform-badges {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .platform-badge {
-            background: var(--light-gray);
-            color: var(--dark);
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid var(--border);
-        }
-
-        /* 미니 데모 (히어로 하단 시각 증거) */
-        .hero-demo {
-            max-width: 600px;
-            margin: 36px auto 0;
-            background: var(--white);
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            overflow: hidden;
-        }
-
-        .hero-demo-header {
-            background: var(--light-gray);
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid var(--border);
-            font-size: 12px;
-            color: var(--gray);
-            font-weight: 600;
-        }
-
-        .hero-demo-dot {
-            width: 8px; height: 8px; border-radius: 50%;
-            display: inline-block;
-        }
-
-        .hero-demo-body {
-            padding: 20px;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .hero-demo-left,
-        .hero-demo-right {
-            flex: 1;
-        }
-
-        .hero-demo-review {
-            background: #FFF5F5;
-            border-radius: 10px;
-            padding: 14px 16px;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .hero-demo-review-stars {
-            font-size: 14px;
-            margin-bottom: 6px;
-        }
-
-        .hero-demo-review-text {
-            color: var(--dark);
-            font-weight: 500;
-        }
-
-        .hero-demo-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--border);
-            padding: 0 4px;
-            align-self: center;
-        }
-
-        .hero-demo-answer {
-            background: var(--light-gray);
-            border-radius: 10px;
-            padding: 14px 16px;
-            font-size: 12px;
-            color: #555;
-            line-height: 1.7;
-            border-left: 3px solid var(--dark);
-        }
-
-        .hero-demo-answer-badge {
-            display: inline-block;
-            background: var(--dark);
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-bottom: 6px;
-        }
-
-        .hero-demo-footer {
-            background: var(--light-gray);
-            padding: 10px 20px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 11px;
-            color: var(--gray);
-        }
-
-        .hero-demo-footer-action {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: var(--red);
-            font-weight: 700;
-        }
-
-        /* ========================================
-           이하 기존 섹션 스타일 유지
-           ======================================== */
-
-        /* 섹션 공통 */
-        .section-wrap {
-            padding: 80px 24px;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .section-bg {
-            background: var(--light-gray);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            font-size: 14px;
-        }
-
-        /* 문제 카드 */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .problem-card {
-            background: var(--white);
-            padding: 28px 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .problem-card .icon {
-            width: 48px;
-            height: 48px;
-            background: var(--light-gray);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            margin-bottom: 14px;
-        }
-
-        .problem-card h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .problem-card p {
-            font-size: 13px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* 차별점 */
-        .diff-section {
-            background: var(--white);
-            color: var(--dark);
-            padding: 80px 24px;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .diff-inner {
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .diff-section .section-title h2 {
-            color: var(--dark);
-        }
-
-        .diff-section .section-title p {
-            color: var(--gray);
-        }
-
-        .diff-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .diff-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px 24px;
-        }
-
-        .diff-card .diff-label {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .diff-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-
-        .diff-card p {
-            font-size: 13px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* 비교 테이블 */
-        .compare-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .compare-table th, .compare-table td {
-            padding: 14px 20px;
-            text-align: left;
-            font-size: 14px;
-        }
-
-        .compare-table th {
-            background: var(--light-gray);
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--gray);
-        }
-
-        .compare-table td { border-bottom: 1px solid var(--border); }
-        .compare-table .before { color: #bbb; }
-        .compare-table .after { color: var(--dark); font-weight: 600; }
-
-        /* 작동 방식 */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .step {
-            text-align: center;
-        }
-
-        .step-num {
-            width: 44px;
-            height: 44px;
-            background: var(--dark);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: 800;
-            margin: 0 auto 12px;
-        }
-
-        .step h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-        .step p { font-size: 12px; color: var(--gray); line-height: 1.6; }
-
-        /* 요금제 */
-        .pricing-table-wrap {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            min-width: 780px;
-        }
-
-        .pricing-table th,
-        .pricing-table td {
-            padding: 14px 12px;
-            text-align: center;
-            font-size: 13px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pricing-table th {
-            background: var(--light-gray);
-            font-weight: 700;
-            font-size: 14px;
-            padding: 20px 10px;
-            vertical-align: bottom;
-        }
-
-        .pricing-table td:first-child,
-        .pricing-table th:first-child {
-            text-align: left;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .pricing-table .tier-price {
-            display: block;
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--dark);
-            margin-top: 6px;
-        }
-
-        .pricing-table .tier-price small {
-            font-size: 11px;
-            font-weight: 400;
-            color: var(--gray);
-        }
-
-        /* 파트너 (추천) — 액센트 강조 */
-        .pricing-table .featured-col {
-            background: rgba(255,155,123,0.05);
-        }
-
-        .pricing-table th.featured-col {
-            background: var(--accent);
-            color: var(--white);
-            position: relative;
-        }
-
-        .pricing-table th.featured-col .tier-price {
-            color: var(--white);
-        }
-
-        .pricing-table th.featured-col .tier-price small {
-            color: rgba(255,255,255,0.7);
-        }
-
-        /* 프로 — 중간 톤 */
-        .pricing-table .l-col {
-            background: rgba(0,0,0,0.02);
-        }
-
-        .pricing-table th.l-col {
-            background: #666;
-            color: var(--white);
-        }
-
-        .pricing-table th.l-col .tier-price {
-            color: var(--white);
-        }
-
-        .pricing-table th.l-col .tier-price small {
-            color: rgba(255,255,255,0.6);
-        }
-
-        /* 프리미엄 — 어두운 톤 */
-        .pricing-table .custom-col {
-            background: rgba(0,0,0,0.035);
-        }
-
-        .pricing-table th.custom-col {
-            background: #333;
-            color: var(--white);
-        }
-
-        .pricing-table th.custom-col .tier-price {
-            color: var(--white);
-        }
-
-        .pricing-table th.custom-col .tier-price small {
-            color: rgba(255,255,255,0.6);
-        }
-
-        /* 기업 — 가장 어두운 톤 */
-        .pricing-table .enterprise-col {
-            background: rgba(0,0,0,0.05);
-        }
-
-        .pricing-table th.enterprise-col {
-            background: var(--dark);
-            color: var(--white);
-        }
-
-        .pricing-table th.enterprise-col .tier-price {
-            color: var(--white);
-            font-size: 14px;
-        }
-
-        .pricing-table .muted {
-            color: #ccc;
-        }
-
-        .pricing-table .check {
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .pricing-table .btn-enterprise {
-            display: inline-block;
-            padding: 8px 16px;
-            background: var(--accent);
-            color: var(--white);
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .pricing-table .btn-enterprise:hover {
-            opacity: 0.9;
-        }
-
-        /* 신뢰 배지 */
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            flex-wrap: wrap;
-            padding: 20px 24px 0;
-            font-size: 12px;
-            color: #bbb;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            padding: 80px 24px;
-            background: var(--white);
-            border-top: 1px solid var(--border);
-        }
-
-        .cta-angel {
-            width: 240px;
-            height: 240px;
-            margin: 0 auto 8px;
-            border-radius: 50%;
-        }
-
-        .cta-section h2 {
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .cta-section p {
-            font-size: 14px;
-            color: var(--gray);
-            margin-bottom: 32px;
-        }
-
-        /* 자동 답변 데모 */
-        .demo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .demo-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-        }
-
-        .demo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .demo-star { font-size: 16px; }
-
-        .demo-label {
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 10px;
-        }
-
-        .demo-label.good { background: #E8F5E9; color: #2E7D32; }
-        .demo-label.neutral { background: #FFF8E1; color: #F57F17; }
-        .demo-label.bad { background: #FFEBEE; color: #C62828; }
-
-        .demo-review {
-            background: var(--light-gray);
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--dark);
-        }
-
-        .demo-arrow {
-            text-align: center;
-            font-size: 11px;
-            color: var(--gray);
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .demo-answer {
-            font-size: 13px;
-            color: #555;
-            line-height: 1.7;
-            background: var(--light-gray);
-            padding: 14px 16px;
-            border-radius: 10px;
-            border-left: 3px solid var(--dark);
-        }
-
-        /* ROI 성과 */
-        .roi-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .roi-card {
-            text-align: center;
-            background: var(--white);
-            padding: 28px 16px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .roi-num {
-            font-size: 36px;
-            font-weight: 900;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .roi-desc {
-            font-size: 13px;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        /* 고객 후기 */
-        .review-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .testimonial {
-            background: var(--light-gray);
-            padding: 28px 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .testimonial-stars {
-            color: #FFD166;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-
-        .testimonial p {
-            font-size: 14px;
-            color: var(--dark);
-            line-height: 1.7;
-            margin-bottom: 16px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            font-size: 12px;
-            color: var(--gray);
-            font-weight: 600;
-        }
-
-        /* FAQ */
-        .faq-list {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .faq-item summary {
-            padding: 16px 20px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-item summary::-webkit-details-marker { display: none; }
-
-        .faq-item summary::after {
-            content: "+";
-            font-size: 20px;
-            color: var(--dark);
-            font-weight: 300;
-        }
-
-        .faq-item[open] summary::after { content: "-"; }
-
-        .faq-item p {
-            padding: 0 20px 16px;
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* 푸터 */
-        footer {
-            padding: 30px 24px;
-            text-align: center;
-            background: var(--dark);
-            color: #999;
-            font-size: 12px;
-        }
-
-        footer .footer-brand {
-            color: var(--white);
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 6px;
-        }
-
-        /* 햄버거 메뉴 */
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--dark);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translateY(7px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translateY(-7px); }
-
-        /* 중간 CTA */
-        .mid-cta {
-            text-align: center;
-            padding: 48px 24px 0;
-        }
-
-        /* 문의 섹션 */
-        .beta-section {
-            text-align: center;
-            background: var(--light-gray);
-            border-radius: 12px;
-            padding: 40px 24px;
-            border: 1px solid var(--border);
-        }
-
-        .beta-section h3 {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .beta-section p {
-            font-size: 14px;
-            color: var(--gray);
-            margin-bottom: 28px;
-            line-height: 1.7;
-        }
-
-        .beta-badges {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 28px;
-        }
-
-        .beta-badge {
-            background: white;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--dark);
-            border: 1px solid var(--border);
-        }
-
-        .price-note {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 13px;
-            color: var(--gray);
-        }
-
-        /* 포커스 스타일 (접근성) */
-        a:focus-visible, button:focus-visible, summary:focus-visible {
-            outline: 2px solid var(--dark);
-            outline-offset: 2px;
-        }
-
-        /* 반응형 */
-        @media (max-width: 768px) {
-            .hero { padding: 100px 20px 0; }
-            .hero h1 { font-size: 28px; }
-            .hero h1 em { padding: 1px 8px; }
-            .hero-sub { font-size: 15px; }
-            .hero-buttons { justify-content: center; }
-            .hero-stats { flex-wrap: wrap; max-width: 320px; }
-            .hero-stat { flex: 1 1 45%; }
-            .hero-stat:nth-child(2) { border-right: none; }
-            .hero-stat:nth-child(1),
-            .hero-stat:nth-child(2) { border-bottom: 1px solid var(--border); }
-            .hero-demo { margin: 24px auto 0; }
-            .hero-demo-body { flex-direction: column; }
-            .hero-demo-arrow { transform: rotate(90deg); padding: 8px 0; }
-            .platform-badges { justify-content: center; }
-            .problem-grid, .steps, .diff-grid, .demo-grid, .roi-grid { grid-template-columns: 1fr; }
-            .hamburger { display: flex; }
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255,255,255,0.98);
-                flex-direction: column;
-                padding: 16px 24px;
-                border-bottom: 1px solid #f0f0f0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            }
-            .nav-links.open { display: flex; }
-            .nav-links a { padding: 10px 0; font-size: 15px; }
-            .section-wrap { padding: 50px 20px; }
-            .diff-section { padding: 50px 20px; }
-            .cta-section { padding: 50px 20px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>리뷰천사 - AI 리뷰·문의 자동 답변 | 월 9,900원부터</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #0064FF;
+    --accent-dark: #0050cc;
+    --accent-bg: #f0f6ff;
+    --black: #191F28;
+    --gray-800: #333D4B;
+    --gray-600: #4E5968;
+    --gray-400: #8B95A1;
+    --gray-200: #E5E8EB;
+    --gray-100: #F2F4F6;
+    --gray-50: #F9FAFB;
+    --white: #fff;
+    --green: #00C471;
+    --red: #F04452;
+    --yellow: #F5C242;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 62.5%; }
+  body { font-family: Pretendard, "Noto Sans KR", -apple-system, system-ui, sans-serif; color: var(--black); line-height: 1.6; font-size: 1.6rem; }
+  a { text-decoration: none; color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 2.4rem; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 6.4rem;
+    background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 6.4rem; }
+  .logo { font-size: 2rem; font-weight: 700; color: var(--black); letter-spacing: -0.02em; }
+  .logo span { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 2.4rem; }
+  .nav-right a { color: var(--gray-600); font-size: 1.4rem; font-weight: 500; }
+  .btn-pill {
+    background: var(--accent); color: white !important; padding: 1rem 2.4rem;
+    border-radius: 999px; font-weight: 600; font-size: 1.4rem; transition: background 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-pill:hover { background: var(--accent-dark); }
+
+  /* Sticky CTA Bar */
+  .sticky-cta {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+    background: rgba(0, 100, 255, 0.95); backdrop-filter: blur(12px);
+    padding: 1rem 0; text-align: center;
+    transform: translateY(-100%); transition: transform 0.3s ease;
+  }
+  .sticky-cta.visible { transform: translateY(6.4rem); }
+  .sticky-cta .wrap { display: flex; align-items: center; justify-content: center; gap: 2rem; }
+  .sticky-cta p { color: white; font-size: 1.4rem; font-weight: 500; }
+  .sticky-cta .btn-sticky {
+    background: white; color: var(--accent); padding: 0.8rem 2.4rem;
+    border-radius: 999px; font-weight: 700; font-size: 1.3rem; border: none;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .sticky-cta .btn-sticky:hover { background: var(--gray-100); }
+
+  /* Hero */
+  .hero { padding: 16rem 0 8rem; }
+  .hero h1 {
+    font-size: 5.2rem; font-weight: 700; color: var(--black);
+    line-height: 1.25; letter-spacing: -0.2rem; margin-bottom: 2rem;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    color: var(--gray-600); font-size: 2rem; line-height: 1.7;
+    margin-bottom: 4.8rem; font-family: "Noto Sans KR", sans-serif; font-weight: 400;
+    max-width: 56rem;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; }
+  .btn-big {
+    background: var(--accent); color: white; padding: 1.8rem 4rem;
+    border-radius: 999px; font-weight: 700; font-size: 1.8rem; border: none;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-big:hover { background: var(--accent-dark); box-shadow: 0 4px 20px rgba(0,100,255,0.25); }
+  .hero-link { color: var(--gray-400); font-size: 1.5rem; font-weight: 500; }
+  .hero-link:hover { color: var(--gray-600); }
+  .hero-sub { color: var(--gray-400); font-size: 1.3rem; }
+
+  /* Dashboard Preview */
+  .preview { padding: 4rem 0 12rem; }
+  .dashboard {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: 2rem;
+    overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+  .dash-titlebar {
+    background: var(--gray-100); padding: 1.2rem 2rem; display: flex; align-items: center; gap: 0.8rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .dash-dot { width: 1.2rem; height: 1.2rem; border-radius: 50%; }
+  .dash-dot.r { background: #FF5F57; }
+  .dash-dot.y { background: #FEBC2E; }
+  .dash-dot.g { background: #28C840; }
+  .dash-url { margin-left: 1.2rem; background: var(--white); border-radius: 0.6rem; padding: 0.4rem 1.6rem; font-size: 1.2rem; color: var(--gray-400); flex: 1; max-width: 32rem; }
+  .dash-body { padding: 2.4rem; }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.4rem; }
+  .dash-header h3 { font-size: 2rem; font-weight: 700; }
+  .dash-header .badge { background: var(--accent-bg); color: var(--accent); padding: 0.4rem 1.2rem; border-radius: 999px; font-size: 1.1rem; font-weight: 600; }
+  .dash-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem; margin-bottom: 2.4rem; }
+  .dash-stat { background: var(--gray-50); border-radius: 1.2rem; padding: 1.6rem; }
+  .dash-stat .label { font-size: 1.1rem; color: var(--gray-400); margin-bottom: 0.4rem; }
+  .dash-stat .value { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.05rem; }
+  .dash-stat .change { font-size: 1.1rem; font-weight: 600; margin-top: 0.2rem; }
+  .dash-stat .up { color: var(--green); }
+  .dash-stat .down { color: var(--red); }
+  .dash-reviews { border-top: 1px solid var(--gray-200); padding-top: 2rem; }
+  .dash-reviews h4 { font-size: 1.4rem; font-weight: 600; color: var(--gray-800); margin-bottom: 1.6rem; }
+  .review-row {
+    display: flex; align-items: flex-start; gap: 1.6rem; padding: 1.6rem 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .review-row:last-child { border-bottom: none; }
+  .review-avatar {
+    width: 3.6rem; height: 3.6rem; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; font-weight: 700; color: white;
+  }
+  .review-avatar.neg { background: var(--red); }
+  .review-avatar.pos { background: var(--green); }
+  .review-content { flex: 1; }
+  .review-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; }
+  .review-meta .name { font-size: 1.3rem; font-weight: 600; }
+  .review-meta .platform { font-size: 1.1rem; color: var(--gray-400); }
+  .review-meta .sentiment { font-size: 1rem; font-weight: 600; padding: 0.2rem 0.8rem; border-radius: 999px; }
+  .sentiment.neg { background: #FFF0F0; color: var(--red); }
+  .sentiment.pos { background: #E8F8EF; color: var(--green); }
+  .review-text { font-size: 1.3rem; color: var(--gray-600); line-height: 1.6; font-family: "Noto Sans KR", sans-serif; }
+  .review-reply {
+    margin-top: 0.8rem; background: var(--accent-bg); border-radius: 1rem;
+    padding: 1.2rem 1.6rem; font-size: 1.2rem; color: var(--gray-800); line-height: 1.6;
+    border-left: 3px solid var(--accent); font-family: "Noto Sans KR", sans-serif;
+  }
+  .review-reply .ai-tag { font-size: 1rem; font-weight: 600; color: var(--accent); margin-bottom: 0.4rem; }
+  .review-status { margin-top: 0.6rem; font-size: 1.1rem; color: var(--gray-400); display: flex; align-items: center; gap: 0.6rem; }
+
+  /* Platform Logos */
+  .platforms { padding: 6rem 0; border-top: 1px solid var(--gray-200); }
+  .platforms p { text-align: center; font-size: 1.3rem; color: var(--gray-400); font-weight: 500; margin-bottom: 3.2rem; }
+  .platform-row { display: flex; justify-content: center; gap: 4rem; align-items: center; flex-wrap: wrap; }
+  .platform-item {
+    display: flex; align-items: center; gap: 1rem;
+    color: var(--gray-400); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em;
+  }
+  .platform-item .coming-soon { font-size: 1.1rem; font-weight: 500; opacity: 0.5; margin-left: 0.2rem; }
+  .platform-icon {
+    width: 4rem; height: 4rem; border-radius: 1rem; display: flex; align-items: center;
+    justify-content: center; font-size: 1.8rem;
+  }
+  .platform-icon.coupang { background: #FFF0F0; }
+  .platform-icon.naver { background: #E8F8EF; }
+  .platform-icon.st { background: #FFF3E0; }
+  .platform-icon.gmarket { background: #E8F0FE; }
+  .platform-icon.auction { background: #F3E8FF; }
+
+  /* Comparison Table */
+  .comparison { padding: 10rem 0; }
+  .comparison h2 { text-align: center; font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; margin-bottom: 1.2rem; }
+  .comparison .sub { text-align: center; font-size: 1.6rem; color: var(--gray-400); margin-bottom: 6.4rem; font-family: "Noto Sans KR", sans-serif; }
+  .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table {
+    width: 100%; border-collapse: collapse; min-width: 60rem;
+    font-family: "Noto Sans KR", sans-serif; font-size: 1.4rem;
+  }
+  .compare-table thead th {
+    padding: 1.6rem 1.2rem; font-weight: 700; font-size: 1.4rem;
+    border-bottom: 2px solid var(--gray-200); text-align: center;
+    color: var(--gray-600); background: var(--gray-50);
+  }
+  .compare-table thead th:first-child { text-align: left; }
+  .compare-table thead th.highlight {
+    background: var(--accent); color: white; border-radius: 1.2rem 1.2rem 0 0;
+    position: relative;
+  }
+  .compare-table tbody td {
+    padding: 1.4rem 1.2rem; text-align: center; border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-600);
+  }
+  .compare-table tbody td:first-child { text-align: left; font-weight: 600; color: var(--gray-800); }
+  .compare-table tbody td.highlight {
+    background: var(--accent-bg); font-weight: 600; color: var(--accent);
+  }
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-check { color: var(--accent); font-weight: 700; font-size: 1.6rem; }
+  .compare-dash { color: var(--gray-400); }
+
+  /* Numbers */
+  .numbers { padding: 10rem 0; background: var(--gray-100); }
+  .num-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+  .num-item h3 { font-size: 4.2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.1rem; margin-bottom: 0.8rem; }
+  .num-item p { font-size: 1.4rem; color: var(--gray-600); font-family: "Noto Sans KR", sans-serif; }
+
+  /* Feature blocks */
+  .feat-block { padding: 12rem 0; }
+  .feat-block.alt { background: var(--gray-50); }
+  .feat-row { display: flex; align-items: center; gap: 6rem; }
+  .feat-row.reverse { flex-direction: row-reverse; }
+  .feat-text { flex: 1; }
+  .feat-visual { flex: 1; }
+  .feat-block .tag { color: var(--accent); font-size: 1.3rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.6rem; }
+  .feat-block h2 { font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; line-height: 1.3; margin-bottom: 1.6rem; color: var(--black); }
+  .feat-block p.desc { font-size: 1.8rem; color: var(--gray-600); line-height: 1.8; font-family: "Noto Sans KR", sans-serif; margin-bottom: 3.2rem; }
+  .feat-check { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+  .feat-check li {
+    font-size: 1.6rem; color: var(--gray-800); display: flex; align-items: center;
+    gap: 1rem; font-family: "Noto Sans KR", sans-serif;
+  }
+  .feat-check li::before {
+    content: '\2713'; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+    background: var(--accent-bg); color: var(--accent); font-weight: 700; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  /* Before/After Example */
+  .example-card {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: 1.6rem;
+    overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .example-header {
+    padding: 1.6rem 2rem; border-bottom: 1px solid var(--gray-100);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .example-header .label { font-size: 1.3rem; font-weight: 600; }
+  .example-header .badge-before { background: #FFF0F0; color: var(--red); padding: 0.3rem 1rem; border-radius: 999px; font-size: 1.1rem; font-weight: 600; }
+  .example-header .badge-after { background: #E8F8EF; color: var(--green); padding: 0.3rem 1rem; border-radius: 999px; font-size: 1.1rem; font-weight: 600; }
+  .example-body { padding: 2rem; }
+  .example-review {
+    background: var(--gray-50); border-radius: 1.2rem; padding: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .example-review .stars { color: var(--yellow); font-size: 1.4rem; margin-bottom: 0.6rem; }
+  .example-review .text { font-size: 1.3rem; color: var(--gray-800); line-height: 1.6; font-family: "Noto Sans KR", sans-serif; }
+  .example-reply {
+    border-left: 3px solid var(--gray-200); padding-left: 1.6rem;
+    font-size: 1.3rem; color: var(--gray-600); line-height: 1.6; font-family: "Noto Sans KR", sans-serif;
+  }
+  .example-reply.ai { border-left-color: var(--accent); }
+  .example-reply .reply-tag { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .example-reply .reply-tag.old { color: var(--gray-400); }
+  .example-reply .reply-tag.ai { color: var(--accent); }
+  .example-arrow { text-align: center; padding: 2rem 0; font-size: 2.4rem; color: var(--gray-400); }
+
+  /* Mini CTA Band */
+  .mini-cta {
+    padding: 6rem 0; text-align: center;
+    background: var(--accent-bg);
+  }
+  .mini-cta h3 {
+    font-size: 2.4rem; font-weight: 700; color: var(--black);
+    letter-spacing: -0.08rem; margin-bottom: 2rem;
+  }
+  .mini-cta .btn-big { font-size: 1.6rem; padding: 1.6rem 3.6rem; }
+  .mini-cta.dark {
+    background: var(--black);
+  }
+  .mini-cta.dark h3 { color: white; }
+  .mini-cta.kakao {
+    background: #FEE500;
+  }
+  .mini-cta.kakao h3 { color: var(--black); }
+  .mini-cta.kakao .btn-kakao {
+    background: #3C1E1E; color: #FEE500; padding: 1.6rem 3.6rem;
+    border-radius: 999px; font-weight: 700; font-size: 1.6rem; border: none;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .mini-cta.kakao .btn-kakao:hover { background: #2a1515; }
+
+  /* Process */
+  .process { padding: 10rem 0; background: var(--gray-50); }
+  .process h2 { text-align: center; font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; margin-bottom: 1.2rem; }
+  .process .sub { text-align: center; font-size: 1.6rem; color: var(--gray-400); margin-bottom: 6.4rem; font-family: "Noto Sans KR", sans-serif; }
+  .step-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .step-card { text-align: center; }
+  .step-num {
+    width: 5.6rem; height: 5.6rem; border-radius: 50%;
+    background: var(--accent); color: white; font-size: 2.2rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.6rem;
+  }
+  .step-card h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem; }
+  .step-card p { font-size: 1.3rem; color: var(--gray-600); line-height: 1.6; font-family: "Noto Sans KR", sans-serif; }
+
+  /* Testimonials */
+  .testimonials { padding: 12rem 0; }
+  .testimonials h2 { text-align: center; font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; margin-bottom: 1.2rem; }
+  .testimonials .sub { text-align: center; font-size: 1.6rem; color: var(--gray-400); margin-bottom: 6.4rem; font-family: "Noto Sans KR", sans-serif; }
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .test-card {
+    background: var(--gray-50); border-radius: 1.6rem; padding: 3.2rem 2.4rem;
+    transition: all 0.2s;
+  }
+  .test-card:hover { background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .test-quote { font-size: 1.5rem; color: var(--gray-800); line-height: 1.8; margin-bottom: 2.4rem; font-family: "Noto Sans KR", sans-serif; font-style: italic; }
+  .test-quote::before { content: '\201C'; font-size: 3.2rem; color: var(--accent); font-weight: 800; line-height: 1; display: block; margin-bottom: 0.8rem; font-style: normal; }
+  .test-author { display: flex; align-items: center; gap: 1.2rem; }
+  .test-avatar {
+    width: 4rem; height: 4rem; border-radius: 50%; background: var(--accent-bg);
+    color: var(--accent); font-weight: 700; font-size: 1.6rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .test-info .name { font-size: 1.3rem; font-weight: 600; }
+  .test-info .role { font-size: 1.1rem; color: var(--gray-400); }
+
+  /* Pricing */
+  .pricing { padding: 12rem 0; }
+  .pricing h2 { text-align: center; font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; margin-bottom: 1.2rem; }
+  .pricing .sub { text-align: center; font-size: 1.6rem; color: var(--gray-400); margin-bottom: 3.2rem; font-family: "Noto Sans KR", sans-serif; }
+  .pricing-anchor { text-align: center; margin-bottom: 4.8rem; }
+  .pricing-anchor .badge {
+    display: inline-block; background: #FEF3C7; color: #92400E;
+    padding: 1rem 2.4rem; border-radius: 1rem; font-size: 1.4rem; font-weight: 600;
+  }
+  .p-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 90rem; margin: 0 auto; }
+  .p-card {
+    border-radius: 2rem; padding: 3.6rem 2.8rem; text-align: center;
+    background: var(--white); border: 1px solid var(--gray-200); transition: all 0.2s;
+  }
+  .p-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  .p-card.main { background: var(--black); color: white; border-color: var(--black); }
+  .p-card.main .p-label { color: #6DB1FF; }
+  .p-card.main .p-desc { color: rgba(255,255,255,0.5); }
+  .p-card.main .p-features li { color: rgba(255,255,255,0.7); }
+  .p-card.main .p-features li::before { color: #6DB1FF; }
+  .p-card.main .p-features li.off { color: rgba(255,255,255,0.3); }
+  .p-card.main .p-features li.off::before { color: rgba(255,255,255,0.3); }
+  .p-label { font-size: 1.3rem; font-weight: 600; color: var(--accent); margin-bottom: 1.2rem; }
+  .p-price { font-size: 3.6rem; font-weight: 900; letter-spacing: -0.1rem; }
+  .p-price small { font-size: 1.4rem; font-weight: 400; opacity: 0.5; }
+  .p-desc { font-size: 1.3rem; color: var(--gray-400); margin: 0.8rem 0 2rem; font-family: "Noto Sans KR", sans-serif; }
+  .p-features { list-style: none; text-align: left; margin-bottom: 2.4rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .p-features li { font-size: 1.3rem; color: var(--gray-600); display: flex; align-items: center; gap: 0.8rem; font-family: "Noto Sans KR", sans-serif; }
+  .p-features li::before { content: '\2713'; color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+  .p-features li.off { color: var(--gray-400); }
+  .p-features li.off::before { content: '\2014'; color: var(--gray-400); }
+  .p-btn {
+    display: block; width: 100%; padding: 1.4rem; border-radius: 999px; font-weight: 600;
+    font-size: 1.4rem; border: none; cursor: pointer; transition: all 0.2s;
+  }
+  .p-btn.blue { background: var(--accent); color: white; }
+  .p-btn.blue:hover { background: var(--accent-dark); }
+  .p-btn.outline { background: var(--accent-bg); color: var(--accent); }
+  .p-btn.outline:hover { background: #dce8ff; }
+  .p-btn.white { background: white; color: var(--black); }
+  .p-btn.white:hover { background: var(--gray-100); }
+  .pricing-note { text-align: center; color: var(--gray-400); font-size: 1.3rem; margin-top: 3.2rem; line-height: 1.8; }
+  .all-plans-link { text-align: center; margin-top: 2.4rem; }
+  .all-plans-link a { color: var(--accent); font-weight: 600; font-size: 1.4rem; text-decoration: underline; }
+
+  /* All plans */
+  .all-plans { display: none; padding: 8rem 0; background: var(--gray-100); }
+  .all-plans.show { display: block; }
+  .all-plans h2 { text-align: center; font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; margin-bottom: 4.8rem; }
+  .all-plans-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.6rem; max-width: 120rem; margin: 0 auto; padding: 0 2.4rem;
+  }
+  .all-plans-grid .p-card { padding: 2.8rem 2rem; }
+  .all-plans-grid .p-price { font-size: 2.8rem; }
+
+  /* FAQ */
+  .faq { padding: 10rem 0; background: var(--gray-50); }
+  .faq h2 { text-align: center; font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; margin-bottom: 6.4rem; }
+  .faq-list { max-width: 72rem; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--gray-200); }
+  .faq-q {
+    padding: 2.4rem 0; font-size: 1.6rem; font-weight: 600; color: var(--black);
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-q::after { content: '+'; font-size: 2rem; color: var(--gray-400); font-weight: 300; }
+  .faq-a {
+    padding: 0 0 2.4rem; font-size: 1.4rem; color: var(--gray-600); line-height: 1.8;
+    font-family: "Noto Sans KR", sans-serif; display: none;
+  }
+  .faq-item.open .faq-q::after { content: '\2212'; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* Final */
+  .final { padding: 12rem 0; text-align: center; }
+  .final h2 { font-size: 3.6rem; font-weight: 700; letter-spacing: -0.15rem; margin-bottom: 1.6rem; }
+  .final p { color: var(--gray-400); font-size: 1.6rem; margin-bottom: 4rem; font-family: "Noto Sans KR", sans-serif; }
+
+  footer {
+    padding: 4.8rem 0; border-top: 1px solid var(--gray-200);
+  }
+  .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 4rem; flex-wrap: wrap; }
+  .footer-brand .logo { margin-bottom: 0.8rem; }
+  .footer-brand p { font-size: 1.2rem; color: var(--gray-400); line-height: 1.8; }
+  .footer-links { display: flex; gap: 4rem; }
+  .footer-col h4 { font-size: 1.2rem; font-weight: 600; color: var(--gray-600); margin-bottom: 1.2rem; }
+  .footer-col a { display: block; font-size: 1.2rem; color: var(--gray-400); margin-bottom: 0.6rem; }
+  .footer-col a:hover { color: var(--gray-600); }
+  .footer-copy { margin-top: 3.2rem; padding-top: 2.4rem; border-top: 1px solid var(--gray-100); font-size: 1.2rem; color: var(--gray-400); line-height: 1.8; }
+
+  @media (max-width: 1024px) {
+    .all-plans-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    html { font-size: 50%; }
+    .num-grid, .step-grid { grid-template-columns: repeat(2, 1fr); }
+    .p-grid, .test-grid { grid-template-columns: 1fr; }
+    .all-plans-grid { grid-template-columns: 1fr; }
+    .feat-row, .feat-row.reverse { flex-direction: column; }
+    .nav-right a:not(.btn-pill) { display: none; }
+    .dash-stats { grid-template-columns: repeat(2, 1fr); }
+    .platform-row { gap: 2rem; }
+    .footer-inner { flex-direction: column; }
+    .compare-table { min-width: 50rem; }
+    .sticky-cta p { font-size: 1.2rem; }
+  }
+</style>
 </head>
 <body>
-
 <nav>
-    <div class="nav-inner">
-        <a href="#" class="logo">
-            <img class="logo-angel" src="angel-logo.png" alt="리뷰천사 로고" width="32" height="32"/>
-            리뷰<em>천사</em>
-        </a>
-        <div class="nav-links" id="navLinks">
-            <a href="#pain">고민</a>
-            <a href="#why">차별점</a>
-            <a href="#pricing">요금제</a>
-            <a href="#contact" class="nav-cta">무료 시작</a>
-        </div>
-        <button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기">
-            <span></span><span></span><span></span>
-        </button>
+  <div class="wrap">
+    <div class="logo">리뷰<span>천사</span></div>
+    <div class="nav-right">
+      <a href="#pricing">요금제</a>
+      <a href="#faq">FAQ</a>
+      <button class="btn-pill">시작하기</button>
     </div>
+  </div>
 </nav>
 
-<main>
-<!-- ========================================
-     히어로 v2
-     ======================================== -->
-<section class="hero">
-    <div class="hero-inner">
-        <div class="hero-badge">14일 무료 체험 &middot; 카드 등록 후 바로 시작</div>
-        <h1>리뷰, 문의, 전화<br><em>이제 안 하셔도 됩니다</em></h1>
-        <p class="hero-sub">리뷰, 배송 문의, 상품 문의 — 5분 안에 처리 완료.<br>화난 고객에게는 전문 상담사가 직접 전화합니다.</p>
-        <div class="hero-buttons">
-            <a href="#contact" class="btn-primary">14일 무료 체험 시작</a>
-            <a href="#why" class="btn-secondary">어떻게 작동하나요? &darr;</a>
-        </div>
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="wrap">
+    <p>리뷰 답변, 매일 몇 시간 쓰시나요?</p>
+    <button class="btn-sticky">14일 무료 체험</button>
+  </div>
+</div>
 
-        <!-- 통계 (히어로 안) -->
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="hero-stat-num">5분</div>
-                <div class="hero-stat-label">답변 완료</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-num">30분</div>
-                <div class="hero-stat-label">불만 CS 전화</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-num">97%</div>
-                <div class="hero-stat-label">답변 만족도</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-num">24/7</div>
-                <div class="hero-stat-label">새벽에도 응답</div>
-            </div>
-        </div>
-
-        <!-- 미니 데모 (시각 증거) -->
-        <div class="hero-demo">
-            <div class="hero-demo-header">
-                <span class="hero-demo-dot" style="background:#FF5F57;"></span>
-                <span class="hero-demo-dot" style="background:#FFBD2E;"></span>
-                <span class="hero-demo-dot" style="background:#28C840;"></span>
-                리뷰천사 대시보드
-            </div>
-            <div class="hero-demo-body">
-                <div class="hero-demo-left">
-                    <div class="hero-demo-review">
-                        <div class="hero-demo-review-stars" style="color: var(--red);">&#9733;&#9734;&#9734;&#9734;&#9734;</div>
-                        <div class="hero-demo-review-text">"파손된 채로 왔는데 교환도 안 해줌. 최악."</div>
-                    </div>
-                </div>
-                <div class="hero-demo-arrow">&rarr;</div>
-                <div class="hero-demo-right">
-                    <div class="hero-demo-answer">
-                        <div class="hero-demo-answer-badge">답변 완료</div>
-                        고객님, 제품 상태가 좋지 않은 채로 도착하여 정말 죄송합니다. 바로 확인 후 교환 절차 안내드리겠습니다.
-                    </div>
-                </div>
-            </div>
-            <div class="hero-demo-footer">
-                <span>별 1점 → 전문 CS팀에 바로 전달</span>
-                <span class="hero-demo-footer-action">&#9742; 30분 내 고객 전화</span>
-            </div>
-        </div>
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <h1>리뷰 답변,<br><span>매일 몇 시간 쓰시나요?</span></h1>
+    <p>AI가 초안을 쓰고, 전문 상담사가 검수합니다.</p>
+    <div class="hero-actions">
+      <button class="btn-big">14일 무료로 시작하기</button>
+      <a href="#pricing" class="hero-link">요금제 보기 &rarr;</a>
     </div>
+    <div class="hero-sub">3분 연동 &middot; 카드 등록 불필요 &middot; 언제든 해지</div>
+  </div>
 </section>
 
-<!-- 고민 -->
-<div class="section-bg">
-    <div class="section-wrap" id="pain">
-        <div class="section-title">
-            <h2>셀러님, 이런 고민 있지 않으세요?</h2>
-            <p>문의 하나 놓치면 별점이 떨어지고, 별점이 떨어지면 매출이 빠집니다</p>
+<!-- Dashboard Preview -->
+<section class="preview">
+  <div class="wrap">
+    <div class="dashboard">
+      <div class="dash-titlebar">
+        <div class="dash-dot r"></div>
+        <div class="dash-dot y"></div>
+        <div class="dash-dot g"></div>
+        <div class="dash-url">app.reviewangel.co.kr/dashboard</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-header">
+          <h3>대시보드</h3>
+          <div class="badge">실시간</div>
         </div>
-        <div class="problem-grid">
-            <div class="problem-card">
-                <div class="icon">&#x23F0;</div>
-                <h3>문의 응대할 시간이 없다</h3>
-                <p>리뷰, 배송 문의, 상품 문의, 교환/환불까지. 하루 1~2시간을 CS에 쓰면 상품 하나 더 올릴 시간이 사라집니다.</p>
-            </div>
-            <div class="problem-card">
-                <div class="icon">&#x1F319;</div>
-                <h3>새벽 문의를 놓치고 있다</h3>
-                <p>밤 11시에 들어온 "배송 어디예요?" — 다음 날 오전에 답하면 이미 별 1개입니다. 고객은 기다려주지 않습니다.</p>
-            </div>
-            <div class="problem-card">
-                <div class="icon">&#x1F4A2;</div>
-                <h3>불만 고객 대응이 두렵다</h3>
-                <p>환불 요구, 협박성 리뷰, 반복 클레임. 직접 전화하자니 감정 소모가 크고, 방치하면 별점이 추락합니다.</p>
-            </div>
-            <div class="problem-card">
-                <div class="icon">&#x2B50;</div>
-                <h3>별 1개 리뷰가 쌓이고 있다</h3>
-                <p>불만 리뷰 3일 방치 = 구매 전환율 급락. 잠재 고객은 별점 낮은 리뷰의 셀러 답변부터 확인합니다.</p>
-            </div>
+        <div class="dash-stats">
+          <div class="dash-stat">
+            <div class="label">오늘 리뷰</div>
+            <div class="value">47</div>
+            <div class="change up">&uarr; 12% vs 어제</div>
+          </div>
+          <div class="dash-stat">
+            <div class="label">자동 답변</div>
+            <div class="value">43</div>
+            <div class="change up">&uarr; 91% 처리율</div>
+          </div>
+          <div class="dash-stat">
+            <div class="label">평균 응답</div>
+            <div class="value">4.2분</div>
+            <div class="change up">&uarr; 38% 단축</div>
+          </div>
+          <div class="dash-stat">
+            <div class="label">부정 리뷰</div>
+            <div class="value">3건</div>
+            <div class="change down">에스컬레이션 1건</div>
+          </div>
         </div>
+        <div class="dash-reviews">
+          <h4>최근 리뷰 &amp; AI 답변</h4>
+          <div class="review-row">
+            <div class="review-avatar neg">김</div>
+            <div class="review-content">
+              <div class="review-meta">
+                <span class="name">김*현</span>
+                <span class="platform">쿠팡</span>
+                <span class="sentiment neg">부정</span>
+              </div>
+              <div class="review-text">배송은 빨랐는데 포장이 찢어져서 왔어요. 상품 자체는 괜찮은데 좀 실망입니다.</div>
+              <div class="review-reply">
+                <div class="ai-tag">AI 자동 답변 &middot; 3분 전</div>
+                안녕하세요 김*현 고객님, 포장 상태로 불편을 드려 정말 죄송합니다. 배송 과정에서 발생한 문제로 보이며, 즉시 물류팀에 전달하여 재발 방지하겠습니다. 교환이나 보상을 원하시면 말씀 부탁드립니다.
+              </div>
+              <div class="review-status">에스컬레이션 진행 중 &mdash; 상담사 배정 완료</div>
+            </div>
+          </div>
+          <div class="review-row">
+            <div class="review-avatar pos">이</div>
+            <div class="review-content">
+              <div class="review-meta">
+                <span class="name">이*수</span>
+                <span class="platform">스마트스토어</span>
+                <span class="sentiment pos">긍정</span>
+              </div>
+              <div class="review-text">가격 대비 품질이 정말 좋아요! 두 번째 구매인데 역시 만족합니다</div>
+              <div class="review-reply">
+                <div class="ai-tag">AI 자동 답변 &middot; 1분 전</div>
+                이*수 고객님, 재구매해 주셔서 감사합니다! 꾸준히 만족하실 수 있도록 품질 관리에 더욱 신경 쓰겠습니다. 다음에도 좋은 경험 드리겠습니다.
+              </div>
+              <div class="review-status">자동 답변 완료</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<!-- 작동 방식 -->
-<div class="section-wrap">
-    <div class="section-title">
-        <h2>어떻게 작동하나요?</h2>
-        <p>셀러님은 승인만 누르면 됩니다</p>
+<!-- Comparison Table -->
+<section class="comparison">
+  <div class="wrap">
+    <h2>왜 리뷰천사인가요?</h2>
+    <p class="sub">다른 서비스와 비교해보세요</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>기능</th>
+            <th class="highlight">리뷰천사</th>
+            <th>챗봇나우</th>
+            <th>바리뷰</th>
+            <th>브이리뷰</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>최저 가격</td>
+            <td class="highlight">9,900원</td>
+            <td>9,900원</td>
+            <td>15,900원</td>
+            <td>55,000원</td>
+          </tr>
+          <tr>
+            <td>AI 리뷰 답글</td>
+            <td class="highlight"><span class="compare-check">&#10003;</span> 무제한</td>
+            <td><span class="compare-dash">&mdash;</span></td>
+            <td><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>문의 자동답변</td>
+            <td class="highlight"><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-check">&#10003;</span> 70%</td>
+            <td><span class="compare-dash">&mdash;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+          </tr>
+          <tr>
+            <td>배송 추적 답변</td>
+            <td class="highlight"><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+          </tr>
+          <tr>
+            <td>전화 CS (사람)</td>
+            <td class="highlight"><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+          </tr>
+          <tr>
+            <td>24시간 응답</td>
+            <td class="highlight"><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+          </tr>
+          <tr>
+            <td>감정 분석</td>
+            <td class="highlight"><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-dash">&mdash;</span></td>
+            <td><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-check">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>멀티 플랫폼</td>
+            <td class="highlight"><span class="compare-check">&#10003;</span></td>
+            <td>카페24만</td>
+            <td>배달앱만</td>
+            <td><span class="compare-check">&#10003;</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="steps">
-        <div class="step">
-            <div class="step-num">1</div>
-            <h3>문의 실시간 수집</h3>
-            <p>리뷰, 상품 문의, 배송 문의<br>쿠팡·스마트스토어·11번가·카페24</p>
-        </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <h3>즉시 답변 처리</h3>
-            <p>브랜드 톤에 맞춰<br>5분 안에 답변 완료</p>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <h3>불만 즉시 알림</h3>
-            <p>환불·교환 요청이 오면<br>셀러님에게 바로 알려드립니다</p>
-        </div>
-        <div class="step">
-            <div class="step-num">4</div>
-            <h3>전문 상담사 전화</h3>
-            <p>화난 고객에게<br>전문 상담사가 직접 전화</p>
-        </div>
-    </div>
-</div>
+  </div>
+</section>
 
-<!-- 차별점 -->
-<div class="diff-section" id="why">
-    <div class="diff-inner">
-        <div class="section-title">
-            <h2>왜 리뷰천사인가?</h2>
-            <p>답변만 써주는 곳은 많습니다. 끝까지 해결하는 곳은 다릅니다.</p>
-        </div>
-        <div class="diff-grid">
-            <div class="diff-card">
-                <div class="diff-label">핵심 차별점</div>
-                <h3>답변부터 전화까지, 끝까지 해결</h3>
-                <p>다른 서비스는 답변만 써주고 끝. 리뷰천사는 불만 고객에게 전문 상담사가 직접 전화합니다. 별 1개가 별 5개로 바뀝니다.</p>
-            </div>
-            <div class="diff-card">
-                <div class="diff-label">10년 경력</div>
-                <h3>CS 대행 10년차 기업이 운영</h3>
-                <p>외주가 아닙니다. CS 대행 10년차 기업이 직접 운영하는 전문 상담팀이 셀러님의 고객을 내 고객처럼 케어합니다.</p>
-            </div>
-            <div class="diff-card">
-                <div class="diff-label">올인원</div>
-                <h3>"배송 어디예요?"부터 전화까지</h3>
-                <p>배송 추적, 상품 문의, 리뷰 답변, 환불 안내, 전화 CS까지. 택배사와 협업해서 배송 문의도 실시간으로 처리합니다.</p>
-            </div>
-            <div class="diff-card">
-                <div class="diff-label">24시간</div>
-                <h3>새벽 문의도 놓치지 않습니다</h3>
-                <p>고객은 시간을 안 가립니다. 새벽이든 주말이든, 문의가 들어오면 즉시 응답합니다. 셀러님은 편히 주무세요.</p>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Mini CTA 1: After Comparison -->
+<section class="mini-cta">
+  <div class="wrap">
+    <h3>AI가 리뷰를 대신 답변합니다</h3>
+    <button class="btn-big">14일 무료 체험</button>
+  </div>
+</section>
 
-<!-- ROI -->
-<div class="section-bg">
-    <div class="section-wrap">
-        <div class="section-title">
-            <h2>CS 관리가 매출을 바꿉니다</h2>
-            <p>데이터가 증명합니다</p>
-        </div>
-        <div class="roi-grid">
-            <div class="roi-card">
-                <div class="roi-num">+25%</div>
-                <div class="roi-desc">별점 0.5점 상승 시<br><strong>매출 증가율</strong><br><span style="font-size:11px;color:#bbb;">Harvard Business Review</span></div>
-            </div>
-            <div class="roi-card">
-                <div class="roi-num">+18%</div>
-                <div class="roi-desc">셀러 답변이 있는 상품의<br><strong>구매 전환율 상승</strong><br><span style="font-size:11px;color:#bbb;">Spiegel Research Center</span></div>
-            </div>
-            <div class="roi-card">
-                <div class="roi-num">-23%</div>
-                <div class="roi-desc">불만 리뷰 방치 시<br><strong>매출 하락률</strong><br><span style="font-size:11px;color:#bbb;">ReviewTrackers 2024</span></div>
-            </div>
-            <div class="roi-card">
-                <div class="roi-num">73%</div>
-                <div class="roi-desc">구매 전 리뷰 답변을<br><strong>확인하는 소비자 비율</strong><br><span style="font-size:11px;color:#bbb;">BrightLocal Survey</span></div>
-            </div>
-        </div>
+<!-- Platforms -->
+<section class="platforms">
+  <div class="wrap">
+    <p>연동 가능 플랫폼</p>
+    <div class="platform-row">
+      <div class="platform-item"><div class="platform-icon coupang">&#128722;</div>쿠팡</div>
+      <div class="platform-item"><div class="platform-icon naver">&#128994;</div>스마트스토어 <span class="coming-soon">(준비 중)</span></div>
+      <div class="platform-item"><div class="platform-icon st">&#127978;</div>11번가</div>
+      <div class="platform-item"><div class="platform-icon gmarket">&#128309;</div>G마켓</div>
+      <div class="platform-item"><div class="platform-icon auction">&#128995;</div>옥션</div>
     </div>
-</div>
+  </div>
+</section>
 
-<!-- 요금제 -->
-<div class="section-wrap" id="pricing">
-    <div class="section-title">
-        <h2>합리적인 요금제</h2>
-        <p>14일 무료 체험으로 먼저 경험해보세요</p>
+<!-- Numbers -->
+<section class="numbers">
+  <div class="wrap">
+    <div class="num-grid">
+      <div class="num-item"><h3>5분</h3><p>평균 답변 시간</p></div>
+      <div class="num-item"><h3>73%</h3><p>부정 리뷰 전환율</p></div>
+      <div class="num-item"><h3>300+</h3><p>월 자동 답변 건수</p></div>
+      <div class="num-item"><h3>9,900원</h3><p>월 시작 가격</p></div>
     </div>
-    <div class="pricing-table-wrap">
-        <table class="pricing-table">
-            <thead>
-                <tr>
-                    <th>기능</th>
-                    <th>셀프<span class="tier-price">5.9만원 <small>/월</small></span></th>
-                    <th class="featured-col">파트너 <small>추천</small><span class="tier-price">18만원 <small>/월</small></span></th>
-                    <th class="l-col">프로<span class="tier-price">30만원 <small>/월</small></span></th>
-                    <th class="custom-col">프리미엄<span class="tier-price">45만원 <small>/월</small></span></th>
-                    <th class="enterprise-col">기업<span class="tier-price">별도 협의</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>배송문의 자동응답</td>
-                    <td>실시간 추적</td>
-                    <td class="featured-col">실시간 추적</td>
-                    <td class="l-col">실시간 추적</td>
-                    <td class="custom-col">실시간 추적</td>
-                    <td class="enterprise-col">실시간 추적</td>
-                </tr>
-                <tr>
-                    <td>상품/일반 문의 자동응답</td>
-                    <td>일 20건</td>
-                    <td class="featured-col">일 50건</td>
-                    <td class="l-col">일 50건</td>
-                    <td class="custom-col">일 100건</td>
-                    <td class="enterprise-col">별도 협의</td>
-                </tr>
-                <tr>
-                    <td>환불/교환 1차 응대</td>
-                    <td class="muted">—</td>
-                    <td class="featured-col">자동 안내</td>
-                    <td class="l-col">자동 안내</td>
-                    <td class="custom-col">자동 안내</td>
-                    <td class="enterprise-col">전담 처리</td>
-                </tr>
-                <tr>
-                    <td>24시간 응답</td>
-                    <td>영업시간만</td>
-                    <td class="featured-col">24시간 무휴</td>
-                    <td class="l-col">24시간 무휴</td>
-                    <td class="custom-col">24시간 무휴</td>
-                    <td class="enterprise-col">24시간 무휴</td>
-                </tr>
-                <tr>
-                    <td>전화 CS</td>
-                    <td class="muted">—</td>
-                    <td class="muted featured-col">—</td>
-                    <td class="l-col">일 10콜</td>
-                    <td class="custom-col">일 30콜</td>
-                    <td class="enterprise-col">전담 매니저</td>
-                </tr>
-                <tr>
-                    <td>리뷰 답글</td>
-                    <td>무제한</td>
-                    <td class="featured-col">무제한</td>
-                    <td class="l-col">무제한</td>
-                    <td class="custom-col">무제한</td>
-                    <td class="enterprise-col">무제한</td>
-                </tr>
-                <tr>
-                    <td>불만 리뷰 알림</td>
-                    <td>즉시 알림</td>
-                    <td class="featured-col">즉시 알림</td>
-                    <td class="l-col">즉시 알림</td>
-                    <td class="custom-col">즉시 알림</td>
-                    <td class="enterprise-col">즉시 알림</td>
-                </tr>
-                <tr>
-                    <td>연동 플랫폼</td>
-                    <td>1개</td>
-                    <td class="featured-col">3개</td>
-                    <td class="l-col">무제한</td>
-                    <td class="custom-col">무제한</td>
-                    <td class="enterprise-col">무제한</td>
-                </tr>
-                <tr>
-                    <td>맞춤 톤 설정</td>
-                    <td>기본 1개</td>
-                    <td class="featured-col">업체별 3개</td>
-                    <td class="l-col">무제한</td>
-                    <td class="custom-col">무제한</td>
-                    <td class="enterprise-col">무제한</td>
-                </tr>
-                <tr>
-                    <td>리포트</td>
-                    <td class="muted">—</td>
-                    <td class="featured-col">주간 리포트</td>
-                    <td class="l-col">주간 리포트</td>
-                    <td class="custom-col">주간+인사이트</td>
-                    <td class="enterprise-col">맞춤 리포트</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><a href="#contact" class="btn-secondary" style="font-size:12px; padding:8px 14px;">14일 무료 시작</a></td>
-                    <td class="featured-col"><a href="#contact" class="btn-primary" style="font-size:12px; padding:8px 14px;">시작하기</a></td>
-                    <td class="l-col"><a href="#contact" class="btn-secondary" style="font-size:12px; padding:8px 14px;">시작하기</a></td>
-                    <td class="custom-col"><a href="#contact" class="btn-secondary" style="font-size:12px; padding:8px 14px;">시작하기</a></td>
-                    <td class="enterprise-col"><a href="#contact" class="btn-enterprise">상담 신청</a></td>
-                </tr>
-            </tbody>
-        </table>
+  </div>
+</section>
+
+<!-- Feature 1 -->
+<section class="feat-block">
+  <div class="wrap">
+    <div class="feat-row">
+      <div class="feat-text">
+        <div class="tag">AI REVIEW</div>
+        <h2>복붙 답변은 끝.<br>AI가 맞춤 답변을 씁니다</h2>
+        <p class="desc">각 리뷰의 톤, 감정, 맥락을 분석해 개인화된 답변을 자동 생성합니다.</p>
+        <ul class="feat-check">
+          <li>리뷰 감정 분석 (긍정/부정/중립)</li>
+          <li>쿠팡·스마트스토어·11번가 통합</li>
+          <li>답변 톤 커스터마이징</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <div class="example-card">
+          <div class="example-header"><span class="label">Before</span><span class="badge-before">기존 답변</span></div>
+          <div class="example-body">
+            <div class="example-review"><div class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</div><div class="text">사이즈가 설명이랑 달라요. 교환하고 싶은데 연락이 안 돼요.</div></div>
+            <div class="example-reply"><div class="reply-tag old">복붙 답변</div>소중한 리뷰 감사합니다. 더 좋은 상품으로 보답하겠습니다.</div>
+          </div>
+        </div>
+        <div class="example-arrow">&darr;</div>
+        <div class="example-card">
+          <div class="example-header"><span class="label">After</span><span class="badge-after">AI 답변</span></div>
+          <div class="example-body">
+            <div class="example-reply ai"><div class="reply-tag ai">리뷰천사 AI</div>안녕하세요, 사이즈 차이로 불편을 드려 죄송합니다. 교환 절차를 바로 안내드리겠습니다. 고객센터 070-XXXX-XXXX로 연락 주시거나, 카카오톡 채널로 문의하시면 평일 10시~18시 실시간 상담 가능합니다. 빠르게 도와드리겠습니다.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="price-note">부가세 별도 | 14일 무료 체험 | 체험 종료 전 알림 | 언제든 해지 가능 | 일 한도 초과 시 즉시 차단 없이 업셀 안내 (소프트 캡)</p>
-</div>
+  </div>
+</section>
+
+<!-- Feature 2 -->
+<section class="feat-block alt">
+  <div class="wrap">
+    <div class="feat-row reverse">
+      <div class="feat-text">
+        <div class="tag">PHONE CS</div>
+        <h2>텍스트로 안 되면<br>사람이 전화합니다</h2>
+        <p class="desc">경쟁사에는 없는 서비스. 불만 고객을 팬으로 만드는 마지막 한 수.</p>
+        <ul class="feat-check">
+          <li>부정 리뷰 자동 감지 &rarr; 에스컬레이션</li>
+          <li>전문 CS 상담사 1:1 배정</li>
+          <li>통화 결과 리포트 전달</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <div class="example-card">
+          <div class="example-header"><span class="label">에스컬레이션 리포트</span></div>
+          <div class="example-body">
+            <div class="example-review">
+              <div class="text" style="font-size:1.2rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:1.2rem;">
+                  <span style="font-weight:600;">전화 CS 완료</span>
+                  <span style="color:var(--green); font-weight:600;">해결 완료</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+                  <div><span style="color:var(--gray-400);">고객</span><br><strong>김*현</strong></div>
+                  <div><span style="color:var(--gray-400);">상담사</span><br><strong>박지은</strong></div>
+                  <div><span style="color:var(--gray-400);">통화 시간</span><br><strong>4분 32초</strong></div>
+                  <div><span style="color:var(--gray-400);">결과</span><br><strong>교환 처리</strong></div>
+                </div>
+                <div style="margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid var(--gray-200);">
+                  <span style="color:var(--gray-400);">상담 요약</span><br>
+                  포장 파손 건으로 연락. 고객 감정 안정시킨 후 익일 재발송 + 1,000원 적립금 안내. 고객 만족, 리뷰 수정 의향 확인.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mini CTA 2: After Phone CS -->
+<section class="mini-cta dark">
+  <div class="wrap">
+    <h3>텍스트로 안 되면, 사람이 전화합니다</h3>
+    <button class="btn-big">무료로 시작하기</button>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="process">
+  <div class="wrap">
+    <h2>3분이면 시작</h2>
+    <p class="sub">복잡한 설정 없이 바로 시작하세요</p>
+    <div class="step-grid">
+      <div class="step-card"><div class="step-num">1</div><h3>회원가입</h3><p>이메일 입력, 30초면 끝</p></div>
+      <div class="step-card"><div class="step-num">2</div><h3>스토어 연동</h3><p>API 키 한 번 입력</p></div>
+      <div class="step-card"><div class="step-num">3</div><h3>답변 톤 설정</h3><p>브랜드에 맞는 말투 선택</p></div>
+      <div class="step-card"><div class="step-num">4</div><h3>자동 답변 시작</h3><p>AI가 리뷰를 모니터링</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEO/AEO -->
+<section class="feat-block">
+  <div class="wrap">
+    <div class="feat-row">
+      <div class="feat-text">
+        <div class="tag">SEARCH & VISIBILITY</div>
+        <h2>리뷰 관리가 곧<br>검색 마케팅입니다</h2>
+        <p class="desc">리뷰 응답률이 높으면 쿠팡/네이버 검색 순위가 올라갑니다. 리뷰천사가 자동으로 관리하면, 매출이 따라옵니다.</p>
+        <ul class="feat-check">
+          <li>응답률 100% 유지 → 쿠팡 판매자점수 상승 → 상위 노출</li>
+          <li>AI가 리뷰 키워드 분석 → 상품명/설명 개선 제안</li>
+          <li>고객 문의를 FAQ로 자동 구조화 → AI 검색(AEO)에서 노출</li>
+          <li>경쟁사 리뷰 키워드 비교 → "남들은 있는데 나는 없는" 포인트 발견</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <div class="example-card">
+          <div class="example-header">
+            <span class="label">SEO 인사이트</span>
+          </div>
+          <div class="example-body">
+            <div class="example-review">
+              <div class="text" style="font-size:1.2rem;">
+                <div style="margin-bottom:1.6rem;">
+                  <span style="color:var(--accent); font-weight:600;">&#128202; 이번 주 리뷰 키워드 분석</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:1.2rem;">
+                  <div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                      <span style="font-weight:600;">응답률</span>
+                      <span style="color:var(--green); font-weight:700;">100%</span>
+                    </div>
+                    <div style="background:var(--gray-100); border-radius:4px; height:8px; overflow:hidden;">
+                      <div style="background:var(--green); width:100%; height:100%; border-radius:4px;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                      <span style="font-weight:600;">평균 응답 시간</span>
+                      <span style="color:var(--accent); font-weight:700;">4.2분</span>
+                    </div>
+                    <div style="background:var(--gray-100); border-radius:4px; height:8px; overflow:hidden;">
+                      <div style="background:var(--accent); width:15%; height:100%; border-radius:4px;"></div>
+                    </div>
+                  </div>
+                  <div style="padding-top:1.2rem; border-top:1px solid var(--gray-200);">
+                    <span style="color:var(--gray-400); font-size:1.1rem;">&#128161; 상품명 개선 제안</span><br>
+                    <span style="font-size:1.2rem;">리뷰에서 <strong>"무농약"</strong>(38%), <strong>"선물용"</strong>(27%) 자주 언급 — 현재 상품명에 없습니다.</span>
+                  </div>
+                  <div style="padding-top:0.8rem;">
+                    <span style="color:var(--gray-400); font-size:1.1rem;">&#128269; 경쟁사 키워드 격차</span><br>
+                    <span style="font-size:1.2rem;">경쟁사에는 <strong>"당도 브릭스"</strong> 키워드가 있지만 내 상품에는 없습니다.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="wrap">
+    <h2>셀러들의 이야기</h2>
+    <p class="sub">리뷰천사를 먼저 경험한 분들</p>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-quote">리뷰 답변에 하루 3시간 쓰던 걸 이제 10분이면 확인만 합니다. 진짜 직원 한 명 뽑은 느낌이에요.</div>
+        <div class="test-author"><div class="test-avatar">박</div><div class="test-info"><div class="name">박*영</div><div class="role">쿠팡 셀러 &middot; 월 매출 3,000만원</div></div></div>
+      </div>
+      <div class="test-card">
+        <div class="test-quote">악성 리뷰 때문에 스트레스 엄청 받았는데, 전화 CS 서비스로 부정 리뷰 70%가 수정됐어요.</div>
+        <div class="test-author"><div class="test-avatar">이</div><div class="test-info"><div class="name">이*준</div><div class="role">스마트스토어 &middot; 건강식품</div></div></div>
+      </div>
+      <div class="test-card">
+        <div class="test-quote">9,900원으로 시작했다가 3개월 만에 스탠다드로 올렸어요. 그만큼 효과가 확실합니다.</div>
+        <div class="test-author"><div class="test-avatar">최</div><div class="test-info"><div class="name">최*아</div><div class="role">11번가 셀러 &middot; 패션잡화</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <h2>CS 직원 채용비의 1/10 가격으로,<br>24시간 CS팀을 만드세요</h2>
+    <p class="sub">14일 무료 체험으로 직접 확인하세요</p>
+    <div class="pricing-anchor">
+      <span class="badge">CS 직원 채용 시 월 인건비 200만원+ &mdash; 리뷰천사는 하루 330원부터</span>
+    </div>
+    <div class="p-grid">
+      <!-- 스타터 -->
+      <div class="p-card">
+        <div class="p-label">스타터</div>
+        <div class="p-price">9,900<small>원/월</small></div>
+        <div class="p-desc">CS 자동화 맛보기</div>
+        <ul class="p-features">
+          <li>리뷰 답글 자동 (무제한)</li>
+          <li>배송문의 실시간 자동응답</li>
+          <li>상품/일반 문의 (확인 후 전송)</li>
+          <li>불만 리뷰 즉시 알림</li>
+          <li>플랫폼 1개 연동</li>
+          <li class="off">전화 CS</li>
+          <li class="off">전담 매니저</li>
+        </ul>
+        <button class="p-btn outline">무료 체험</button>
+      </div>
+      <!-- 스탠다드 (인기) -->
+      <div class="p-card main">
+        <div class="p-label">스탠다드 &middot; 인기</div>
+        <div class="p-price">180,000<small>원/월</small></div>
+        <div class="p-desc">AI + 사람 시작</div>
+        <ul class="p-features">
+          <li>전체 AI 기능 무제한</li>
+          <li>전화 CS 일 10콜</li>
+          <li>환불/교환 1차 자동 안내</li>
+          <li>전문 상담사 배정</li>
+          <li>주간 성과 리포트</li>
+          <li>플랫폼 무제한</li>
+        </ul>
+        <button class="p-btn white">무료 체험</button>
+      </div>
+      <!-- 프로 -->
+      <div class="p-card">
+        <div class="p-label">프로</div>
+        <div class="p-price">350,000<small>원/월</small></div>
+        <div class="p-desc">CS 직원 대체</div>
+        <ul class="p-features">
+          <li>스탠다드 전체 포함</li>
+          <li>전화 CS 일 30콜</li>
+          <li>전담 CS 매니저</li>
+          <li>주간 리포트 + 인사이트</li>
+          <li>SEO 키워드 제안</li>
+          <li>경쟁사 키워드 비교</li>
+        </ul>
+        <button class="p-btn outline">상담 신청</button>
+      </div>
+    </div>
+    <div class="all-plans-link">
+      <a href="javascript:void(0)" onclick="document.getElementById('allPlans').classList.toggle('show')">전체 요금제 보기 (5티어)</a>
+    </div>
+    <p class="pricing-note">부가세 별도 &middot; 14일 무료 체험 &middot; 언제든 해지 가능</p>
+  </div>
+</section>
+
+<!-- 전체 5티어 -->
+<section class="all-plans" id="allPlans">
+  <div class="wrap">
+    <h2>전체 요금제</h2>
+    <div class="all-plans-grid">
+      <div class="p-card">
+        <div class="p-label">스타터</div>
+        <div class="p-price">9,900<small>원/월</small></div>
+        <div class="p-desc">CS 자동화 맛보기</div>
+        <ul class="p-features">
+          <li>리뷰 답글 자동 (무제한)</li>
+          <li>배송문의 실시간 자동응답</li>
+          <li>상품/일반 문의 (확인 후 전송)</li>
+          <li>불만 리뷰 즉시 알림</li>
+          <li>플랫폼 1개 연동</li>
+          <li class="off">전화 CS</li>
+          <li class="off">전담 매니저</li>
+        </ul>
+        <button class="p-btn outline">무료 체험</button>
+      </div>
+      <div class="p-card">
+        <div class="p-label">베이직</div>
+        <div class="p-price">59,000<small>원/월</small></div>
+        <div class="p-desc">AI가 알아서 처리</div>
+        <ul class="p-features">
+          <li>리뷰 답글 자동 (무제한)</li>
+          <li>배송/상품/일반 문의 자동 전송</li>
+          <li>24시간 무휴 응답</li>
+          <li>감정분석 대시보드</li>
+          <li>플랫폼 3개 연동</li>
+          <li class="off">전화 CS</li>
+        </ul>
+        <button class="p-btn outline">무료 체험</button>
+      </div>
+      <div class="p-card main">
+        <div class="p-label">스탠다드 &middot; 인기</div>
+        <div class="p-price">180,000<small>원/월</small></div>
+        <div class="p-desc">AI + 사람 시작</div>
+        <ul class="p-features">
+          <li>전체 AI 기능 무제한</li>
+          <li>전화 CS 일 10콜</li>
+          <li>환불/교환 1차 자동 안내</li>
+          <li>전문 상담사 배정</li>
+          <li>주간 성과 리포트</li>
+          <li>플랫폼 무제한</li>
+        </ul>
+        <button class="p-btn white">무료 체험</button>
+      </div>
+      <div class="p-card">
+        <div class="p-label">프로</div>
+        <div class="p-price">350,000<small>원/월</small></div>
+        <div class="p-desc">CS 직원 대체</div>
+        <ul class="p-features">
+          <li>스탠다드 전체 포함</li>
+          <li>전화 CS 일 30콜</li>
+          <li>전담 CS 매니저</li>
+          <li>주간 리포트 + 인사이트</li>
+          <li>SEO 키워드 제안</li>
+          <li>경쟁사 키워드 비교</li>
+        </ul>
+        <button class="p-btn outline">상담 신청</button>
+      </div>
+      <div class="p-card">
+        <div class="p-label">엔터프라이즈</div>
+        <div class="p-price">420,000<small>원/월</small></div>
+        <div class="p-desc">CS 부서 통째로</div>
+        <ul class="p-features">
+          <li>프로 전체 포함</li>
+          <li>전화 CS 일 50콜</li>
+          <li>환불/교환 전담 처리</li>
+          <li>멀티 브랜드 관리</li>
+          <li>API 연동</li>
+          <li>SEO/AEO 풀 패키지</li>
+          <li>맞춤 리포트</li>
+        </ul>
+        <button class="p-btn outline">문의하기</button>
+      </div>
+    </div>
+    <p class="pricing-note">부가세 별도 &middot; 14일 무료 체험 &middot; 언제든 해지 가능</p>
+  </div>
+</section>
 
 <!-- FAQ -->
-<div class="section-bg">
-    <div class="section-wrap">
-        <div class="section-title">
-            <h2>자주 묻는 질문</h2>
-        </div>
-        <div class="faq-list">
-            <details class="faq-item">
-                <summary>우리 상품을 제대로 이해하고 답변하나요?</summary>
-                <p>시작 전에 셀러님의 상품 정보, 자주 묻는 질문, 응대 톤을 세팅합니다. "감사합니다" 한마디가 아니라 상품명과 상황에 맞는 구체적인 답변이 나갑니다. 톤이 안 맞으면 언제든 조정 가능합니다.</p>
-            </details>
-            <details class="faq-item">
-                <summary>셋업은 얼마나 걸리나요?</summary>
-                <p>플랫폼 연동부터 톤 설정까지 보통 1~2영업일이면 완료됩니다. 셀러님이 하실 건 플랫폼 접근 권한만 주시면 됩니다.</p>
-            </details>
-            <details class="faq-item">
-                <summary>일 한도를 넘으면 바로 끊기나요?</summary>
-                <p>아닙니다. 한도를 넘어도 당일은 계속 처리됩니다. 자주 초과되면 상위 플랜을 안내드리지만, 강제 차단은 없습니다.</p>
-            </details>
-            <details class="faq-item">
-                <summary>전화 CS는 누가 하나요?</summary>
-                <p>자체 콜센터를 운영하는 전문 상담사가 직접 전화합니다. 고객 불만이 들어오면 30분 이내에 연락드려서 문제를 해결합니다.</p>
-            </details>
-            <details class="faq-item">
-                <summary>무료 체험 후 자동 결제되나요?</summary>
-                <p>14일 체험 종료 전에 알림을 보내드립니다. 해지하시면 결제되지 않고, 위약금 없이 언제든 플랜 변경·해지 가능합니다.</p>
-            </details>
-            <details class="faq-item">
-                <summary>어떤 플랫폼을 지원하나요?</summary>
-                <p>쿠팡, 네이버 스마트스토어, 11번가, 카페24를 지원합니다. 추가 플랫폼은 순차 확대 중입니다.</p>
-            </details>
-        </div>
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">무료 체험 기간은 어떻게 되나요?</div>
+        <div class="faq-a">14일간 모든 기능을 무료로 사용할 수 있습니다. 신용카드 등록 없이 시작 가능하며, 체험 종료 후 자동 결제되지 않습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">AI 답변 품질이 걱정됩니다</div>
+        <div class="faq-a">리뷰천사 AI는 Claude 기반으로 각 리뷰의 맥락, 감정, 상품 정보를 종합 분석합니다. 모든 답변은 발송 전 검토할 수 있으며, 답변 톤도 브랜드에 맞게 조절 가능합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">스타터(9,900원)와 베이직(59,000원)의 차이는?</div>
+        <div class="faq-a">스타터는 AI가 답변을 만들고 셀러님이 확인 후 전송합니다. 베이직부터는 AI가 자동으로 전송하여, 24시간 손 놓고 맡길 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">전화 CS는 어떤 사람이 하나요?</div>
+        <div class="faq-a">이커머스 CS 경력 3년 이상의 전문 상담사가 배정됩니다. 통화 전 고객 이력과 리뷰 내용을 충분히 파악한 후 연락드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">어떤 플랫폼을 지원하나요?</div>
+        <div class="faq-a">쿠팡, 스마트스토어, 11번가, G마켓, 옥션을 지원합니다. 카페24, 자사몰 연동도 준비 중입니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">중간에 요금제를 변경할 수 있나요?</div>
+        <div class="faq-a">네, 언제든 업그레이드 또는 다운그레이드 가능합니다. 변경 시 남은 기간은 일할 계산됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">비용 대비 효과가 있나요?</div>
+        <div class="faq-a">CS 직원 채용비 월 200만원 대비, 리뷰천사는 월 9,900원부터 시작합니다. 하루 2시간 CS 업무를 AI가 대신하면, 한 달에 60시간을 상품 소싱과 마케팅에 쓸 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">내 데이터는 안전한가요?</div>
+        <div class="faq-a">모든 데이터는 AWS 한국 리전에 암호화 저장됩니다. 셀러 계정 정보는 AES-256 암호화로 보호하며, 서비스 해지 시 즉시 삭제됩니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">스마트스토어도 지원하나요?</div>
+        <div class="faq-a">현재 쿠팡을 완벽 지원하고 있으며, 네이버 스마트스토어는 준비 중입니다. 출시 시 우선 안내드리겠습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">AI가 잘못된 답변을 보내면?</div>
+        <div class="faq-a">스타터 플랜에서는 AI가 초안을 작성하고 셀러님이 확인 후 전송합니다. 베이직 이상에서는 자동 전송되지만, 환불/교환 등 민감한 문의는 자동으로 보류하고 셀러님께 알림을 보냅니다.</div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<!-- CTA -->
-<div class="cta-section" id="contact">
-    <img class="cta-angel" src="angel-logo.png" alt="리뷰천사 로고" width="80" height="80"/>
-    <h2>문의 응대, 이제 셀러님이 안 하셔도 됩니다</h2>
-    <p>14일 무료 체험으로 직접 경험해보세요</p>
-    <!-- TODO: 실제 카카오 오픈프로필 URL로 교체하세요 (예: https://open.kakao.com/me/리뷰천사) -->
-    <a href="https://open.kakao.com/" class="btn-primary" style="font-size: 17px; padding: 16px 40px;">카카오톡으로 시작하기</a>
-    <p style="margin-top: 24px; font-size: 12px; color: #bbb;">14일 내 해지 시 결제 없음 · 체험 종료 전 알림</p>
-</div>
+<!-- Mini CTA 3: After FAQ -->
+<section class="mini-cta kakao">
+  <div class="wrap">
+    <h3>더 궁금한 점이 있으신가요?</h3>
+    <a href="https://open.kakao.com/o/suzc3Cei" target="_blank" rel="noopener">
+      <button class="btn-kakao">카카오톡 문의하기</button>
+    </a>
+  </div>
+</section>
 
-<!-- 푸터 -->
-</main>
+<!-- Final CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>오늘 밤 들어올 리뷰와 문의,<br>내일 아침엔 전부 처리되어 있습니다</h2>
+    <p>3분이면 연동 완료. 14일 동안 모든 기능을 무료로 체험하세요.</p>
+    <button class="btn-big">14일 무료로 시작하기</button>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer>
-    <div class="footer-brand">리뷰천사</div>
-    <p>루다(Ruda) | 대표: 홍석화</p>
-    <p style="margin-top:4px;">사업자등록번호: 436-10-02583 | 이메일: cs@review1004.co.kr</p>
-    <p style="margin-top:6px; color: #666;">Copyright 2026 Ruda. All rights reserved.</p>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">리뷰<span>천사</span></div>
+        <p>리뷰천사 by 루다 | AI + 전문 상담사 CS 자동화<br>10년 CS 전문기업 워크위드 운영</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col"><h4>서비스</h4><a href="#">AI 리뷰 답변</a><a href="#">전화 CS 대행</a><a href="#">감정 분석</a></div>
+        <div class="footer-col"><h4>지원</h4><a href="#pricing">요금제</a><a href="#faq">FAQ</a><a href="mailto:cs@review1004.co.kr">고객지원</a></div>
+        <div class="footer-col"><h4>회사</h4><a href="#">이용약관</a><a href="#">개인정보처리방침</a></div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 리뷰천사 by 루다 | 10년 CS 전문기업 워크위드 운영<br>
+      루다(Ruda) | 대표: 홍석화 | 사업자등록번호: 436-10-02583 | cs@review1004.co.kr
+    </div>
+  </div>
 </footer>
 
-<!-- GA4 (TODO: G-XXXXXXXXXX를 실제 추적 ID로 교체) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX');
-</script>
+// Sticky CTA: show when scrolled past hero
+(function() {
+  var hero = document.getElementById('hero');
+  var stickyCta = document.getElementById('stickyCta');
+  if (!hero || !stickyCta) return;
 
-<!-- 햄버거 메뉴 -->
-<script>
-document.getElementById('hamburgerBtn').addEventListener('click', function() {
-    this.classList.toggle('active');
-    document.getElementById('navLinks').classList.toggle('open');
-    this.setAttribute('aria-label', this.classList.contains('active') ? '메뉴 닫기' : '메뉴 열기');
-});
-document.querySelectorAll('#navLinks a').forEach(function(link) {
-    link.addEventListener('click', function() {
-        document.getElementById('navLinks').classList.remove('open');
-        document.getElementById('hamburgerBtn').classList.remove('active');
-    });
-});
-</script>
+  function checkScroll() {
+    var heroBottom = hero.offsetTop + hero.offsetHeight;
+    if (window.scrollY > heroBottom) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }
 
-<!-- 구조화 데이터: FAQPage -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "무료 체험 기간에 카드 등록이 필요한가요?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "네, 카드 등록 후 14일 무료 체험이 시작됩니다. 체험 기간 내 해지하시면 결제되지 않습니다. Google, AWS와 동일한 방식으로, 체험 종료 전 알림을 보내드립니다."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "자동 답변이 이상하면 어떡하나요?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "불만 리뷰는 자동 등록되지 않고 셀러님의 승인을 거칩니다. 긍정 리뷰도 답변 품질이 97% 이상 적합하도록 업체별 맞춤 톤을 설정합니다."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "어떤 플랫폼을 지원하나요?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "현재 쿠팡, 네이버 스마트스토어, 11번가, 카페24를 지원합니다. 추가 플랫폼은 순차적으로 확대 예정입니다."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "전화 CS는 어떻게 진행되나요?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "AI가 불만 리뷰를 감지하면 즉시 전문 CS팀에 전달됩니다. 30분 이내에 고객에게 직접 전화하여 불만을 해결하고, 리뷰 수정을 유도합니다."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "중간에 해지할 수 있나요?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "네, 위약금 없이 언제든 해지 가능합니다. 계약 기간 제약 없습니다."
-            }
-        }
-    ]
-}
+  window.addEventListener('scroll', checkScroll, { passive: true });
+  checkScroll();
+})();
 </script>
-
-<!-- 구조화 데이터: Organization -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "리뷰천사",
-    "alternateName": "Review Angel",
-    "url": "https://www.review1004.co.kr/",
-    "logo": "https://www.review1004.co.kr/angel-logo.png",
-    "description": "이커머스 셀러를 위한 리뷰·문의·배송 CS 자동 처리 + 전문 상담사 전화 대응 서비스"
-}
-</script>
-
 </body>
 </html>
