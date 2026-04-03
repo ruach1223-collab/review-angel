@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>리뷰천사 - CS 직원 대신 월 30만원 | AI 리뷰 답변 + 전화 CS 대행</title>
+<title>리뷰천사 - 리뷰·CS 대신 처리해드립니다 | 월 9,900원부터</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --accent: #4F46E5;
-    --accent-dark: #4338CA;
-    --accent-bg: #EEF2FF;
-    --black: #191F28;
-    --gray-800: #333D4B;
-    --gray-600: #4E5968;
-    --gray-400: #8B95A1;
-    --gray-200: #E5E8EB;
-    --gray-100: #F2F4F6;
-    --gray-50: #F9FAFB;
+    --accent: #E8631A;
+    --accent-dark: #D4570F;
+    --accent-bg: #FFF4ED;
+    --black: #1A1A1A;
+    --gray-800: #3A3A3A;
+    --gray-600: #4A4A4A;
+    --gray-400: #8A8A8A;
+    --gray-200: #E8E4DE;
+    --gray-100: #F5F3EF;
+    --gray-50: #FAFAF8;
     --white: #fff;
-    --green: #00C471;
-    --red: #F04452;
-    --yellow: #F5C242;
+    --green: #2D8F4E;
+    --red: #D94040;
+    --yellow: #E8A817;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { font-size: 62.5%; }
@@ -319,21 +319,21 @@
     display: inline-block; background: #FEF3C7; color: #92400E;
     padding: 1rem 2.4rem; border-radius: 1rem; font-size: 1.4rem; font-weight: 600;
   }
-  .p-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 90rem; margin: 0 auto; }
+  .p-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; max-width: 112rem; margin: 0 auto; padding: 0 1.6rem; }
   .p-card {
-    border-radius: 2rem; padding: 3.6rem 2.8rem; text-align: center;
+    border-radius: 1.6rem; padding: 2.8rem 2rem; text-align: center;
     background: var(--white); border: 1px solid var(--gray-200); transition: all 0.2s;
   }
   .p-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
   .p-card.main { background: var(--black); color: white; border-color: var(--black); }
-  .p-card.main .p-label { color: #6DB1FF; }
+  .p-card.main .p-label { color: #FFB380; }
   .p-card.main .p-desc { color: rgba(255,255,255,0.5); }
   .p-card.main .p-features li { color: rgba(255,255,255,0.7); }
-  .p-card.main .p-features li::before { color: #6DB1FF; }
+  .p-card.main .p-features li::before { color: #FFB380; }
   .p-card.main .p-features li.off { color: rgba(255,255,255,0.3); }
   .p-card.main .p-features li.off::before { color: rgba(255,255,255,0.3); }
   .p-label { font-size: 1.3rem; font-weight: 600; color: var(--accent); margin-bottom: 1.2rem; }
-  .p-price { font-size: 3.6rem; font-weight: 900; letter-spacing: -0.1rem; }
+  .p-price { font-size: 2.8rem; font-weight: 900; letter-spacing: -0.1rem; }
   .p-price small { font-size: 1.4rem; font-weight: 400; opacity: 0.5; }
   .p-desc { font-size: 1.3rem; color: var(--gray-400); margin: 0.8rem 0 2rem; font-family: "Noto Sans KR", sans-serif; }
   .p-features { list-style: none; text-align: left; margin-bottom: 2.4rem; display: flex; flex-direction: column; gap: 0.8rem; }
@@ -348,7 +348,7 @@
   .p-btn.blue { background: var(--accent); color: white; }
   .p-btn.blue:hover { background: var(--accent-dark); }
   .p-btn.outline { background: var(--accent-bg); color: var(--accent); }
-  .p-btn.outline:hover { background: #dce8ff; }
+  .p-btn.outline:hover { background: #FFE8D6; }
   .p-btn.white { background: white; color: var(--black); }
   .p-btn.white:hover { background: var(--gray-100); }
   .pricing-note { text-align: center; color: var(--gray-400); font-size: 1.3rem; margin-top: 3.2rem; line-height: 1.8; }
@@ -405,8 +405,8 @@
   @media (max-width: 768px) {
     html { font-size: 50%; }
     .num-grid, .step-grid { grid-template-columns: repeat(2, 1fr); }
-    .p-grid, .test-grid { grid-template-columns: 1fr; }
-    .all-plans-grid { grid-template-columns: 1fr; }
+    .p-grid { grid-template-columns: repeat(2, 1fr); }
+    .test-grid { grid-template-columns: 1fr; }
     .feat-row, .feat-row.reverse { flex-direction: column; }
     .nav-right a:not(.btn-pill) { display: none; }
     .dash-stats { grid-template-columns: repeat(2, 1fr); }
@@ -440,8 +440,8 @@
 <!-- Hero -->
 <section class="hero" id="hero">
   <div class="wrap">
-    <h1>CS 직원 채용, 아직도 고민 중이세요?<br><span>그 돈이면 10개월 씁니다</span></h1>
-    <p>급여 215만원 + 4대보험 + 퇴직금 + 식대 + 연차수당 = 월 300만원.<br>리뷰천사는 전문 상담사 + AI 포함 월 9,900원부터.</p>
+    <h1>혼자 리뷰 답변, 문의 응대,<br><span>배송 처리 다 하시죠?</span></h1>
+    <p>직원 한 명 뽑자니 월 300만원. 리뷰천사는 월 9,900원부터.<br>전문 상담사와 AI가 리뷰·CS를 대신 처리합니다.</p>
     <div class="hero-actions">
       <button class="btn-big">14일 무료로 시작하기</button>
       <a href="#pricing" class="hero-link">요금제 보기 &rarr;</a>
@@ -530,7 +530,7 @@
 <!-- Cost Comparison: 채용 vs 리뷰천사 -->
 <section class="comparison" style="padding-bottom:0;">
   <div class="wrap">
-    <h2>직원 채용하면, 진짜 얼마일까요?</h2>
+    <h2>사람 한 명 뽑으면, 진짜 얼마일까요?</h2>
     <p class="sub">월급만 주면 끝이 아닙니다</p>
     <div class="compare-table-wrap">
       <table class="compare-table">
@@ -652,7 +652,7 @@
 <!-- Mini CTA 1: After Comparison -->
 <section class="mini-cta">
   <div class="wrap">
-    <h3>직원 채용 없이, 바로 시작하세요</h3>
+    <h3>사장님은 상품에만 집중하세요</h3>
     <button class="btn-big">14일 무료 체험</button>
   </div>
 </section>
@@ -763,7 +763,7 @@
 <!-- Mini CTA 2: After Phone CS -->
 <section class="mini-cta dark">
   <div class="wrap">
-    <h3>직원 대신, 전문 상담사가 전화합니다</h3>
+    <h3>화난 고객, 사장님 대신 전화합니다</h3>
     <button class="btn-big">무료로 시작하기</button>
   </div>
 </section>
@@ -870,8 +870,8 @@
 <!-- Pricing -->
 <section class="pricing" id="pricing">
   <div class="wrap">
-    <h2>직원 1명 뽑을 비용이면,<br>CS팀이 생깁니다</h2>
-    <p class="sub">구인·면접·교육·4대보험 다 필요 없습니다</p>
+    <h2>사장님 혼자 하지 마세요.<br>리뷰천사가 대신합니다</h2>
+    <p class="sub">구인·면접·교육·4대보험 없이, 바로 시작</p>
     <div class="pricing-anchor">
       <span class="badge">직원 1명 실제 비용 월 300만원 &mdash; 리뷰천사는 월 9,900원부터</span>
     </div>
@@ -880,28 +880,42 @@
       <div class="p-card">
         <div class="p-label">스타터</div>
         <div class="p-price">9,900<small>원/월</small></div>
-        <div class="p-desc">CS 관리 맛보기</div>
+        <div class="p-desc">AI 답변 맛보기</div>
         <ul class="p-features">
-          <li>리뷰 답글 자동 (무제한)</li>
-          <li>배송문의 실시간 자동응답</li>
-          <li>상품/일반 문의 (확인 후 전송)</li>
+          <li>리뷰 답글 (확인 후 등록)</li>
+          <li>CS 문의 확인 후 전송</li>
+          <li>배송추적 자동 안내</li>
           <li>불만 리뷰 즉시 알림</li>
-          <li>플랫폼 1개 연동</li>
+          <li>플랫폼 1개</li>
           <li class="off">전화 CS</li>
-          <li class="off">전담 매니저</li>
+        </ul>
+        <button class="p-btn outline">무료 체험</button>
+      </div>
+      <!-- 베이직 -->
+      <div class="p-card">
+        <div class="p-label">베이직</div>
+        <div class="p-price">59,000<small>원/월</small></div>
+        <div class="p-desc">AI가 알아서</div>
+        <ul class="p-features">
+          <li>리뷰 답글 완전 자동</li>
+          <li>CS 문의 자동 전송 24시간</li>
+          <li>배송추적 자동 안내</li>
+          <li>감정분석 대시보드</li>
+          <li>플랫폼 3개</li>
+          <li class="off">전화 CS</li>
         </ul>
         <button class="p-btn outline">무료 체험</button>
       </div>
       <!-- 스탠다드 (인기) -->
       <div class="p-card main">
         <div class="p-label">스탠다드 &middot; 인기</div>
-        <div class="p-price">180,000<small>원/월</small></div>
-        <div class="p-desc">AI + 사람 시작</div>
+        <div class="p-price">250,000<small>원/월</small></div>
+        <div class="p-desc">AI + 전화 CS 시작</div>
         <ul class="p-features">
           <li>전체 AI 기능 무제한</li>
           <li>전화 CS 일 10콜</li>
-          <li>환불/교환 1차 자동 안내</li>
-          <li>전문 상담사 배정</li>
+          <li>전문 상담사 배정 (겸임)</li>
+          <li>환불/교환 1차 안내</li>
           <li>주간 성과 리포트</li>
           <li>플랫폼 무제한</li>
         </ul>
@@ -910,95 +924,26 @@
       <!-- 프로 -->
       <div class="p-card">
         <div class="p-label">프로</div>
-        <div class="p-price">350,000<small>원/월</small></div>
-        <div class="p-desc">CS 직원 대체</div>
+        <div class="p-price">390,000<small>원/월</small></div>
+        <div class="p-desc">CS 걱정 끝</div>
         <ul class="p-features">
           <li>스탠다드 전체 포함</li>
-          <li>전화 CS 일 30콜</li>
-          <li>전담 CS 매니저</li>
+          <li>전화 CS 일 20콜</li>
+          <li>우선 배정 상담사</li>
           <li>주간 리포트 + 인사이트</li>
+          <li>맞춤 응대 매뉴얼</li>
           <li>SEO 키워드 제안</li>
-          <li>경쟁사 키워드 비교</li>
         </ul>
         <button class="p-btn outline">상담 신청</button>
       </div>
-    </div>
-    <div class="all-plans-link">
-      <a href="javascript:void(0)" onclick="document.getElementById('allPlans').classList.toggle('show')">전체 요금제 보기 (5티어)</a>
-    </div>
-    <p class="pricing-note">부가세 별도 &middot; 14일 무료 체험 &middot; 언제든 해지 가능</p>
-  </div>
-</section>
-
-<!-- 전체 5티어 -->
-<section class="all-plans" id="allPlans">
-  <div class="wrap">
-    <h2>전체 요금제</h2>
-    <div class="all-plans-grid">
-      <div class="p-card">
-        <div class="p-label">스타터</div>
-        <div class="p-price">9,900<small>원/월</small></div>
-        <div class="p-desc">CS 관리 맛보기</div>
-        <ul class="p-features">
-          <li>리뷰 답글 자동 (무제한)</li>
-          <li>배송문의 실시간 자동응답</li>
-          <li>상품/일반 문의 (확인 후 전송)</li>
-          <li>불만 리뷰 즉시 알림</li>
-          <li>플랫폼 1개 연동</li>
-          <li class="off">전화 CS</li>
-          <li class="off">전담 매니저</li>
-        </ul>
-        <button class="p-btn outline">무료 체험</button>
-      </div>
-      <div class="p-card">
-        <div class="p-label">베이직</div>
-        <div class="p-price">59,000<small>원/월</small></div>
-        <div class="p-desc">AI가 알아서 처리</div>
-        <ul class="p-features">
-          <li>리뷰 답글 자동 (무제한)</li>
-          <li>배송/상품/일반 문의 자동 전송</li>
-          <li>24시간 무휴 응답</li>
-          <li>감정분석 대시보드</li>
-          <li>플랫폼 3개 연동</li>
-          <li class="off">전화 CS</li>
-        </ul>
-        <button class="p-btn outline">무료 체험</button>
-      </div>
-      <div class="p-card main">
-        <div class="p-label">스탠다드 &middot; 인기</div>
-        <div class="p-price">180,000<small>원/월</small></div>
-        <div class="p-desc">AI + 사람 시작</div>
-        <ul class="p-features">
-          <li>전체 AI 기능 무제한</li>
-          <li>전화 CS 일 10콜</li>
-          <li>환불/교환 1차 자동 안내</li>
-          <li>전문 상담사 배정</li>
-          <li>주간 성과 리포트</li>
-          <li>플랫폼 무제한</li>
-        </ul>
-        <button class="p-btn white">무료 체험</button>
-      </div>
-      <div class="p-card">
-        <div class="p-label">프로</div>
-        <div class="p-price">350,000<small>원/월</small></div>
-        <div class="p-desc">CS 직원 대체</div>
-        <ul class="p-features">
-          <li>스탠다드 전체 포함</li>
-          <li>전화 CS 일 30콜</li>
-          <li>전담 CS 매니저</li>
-          <li>주간 리포트 + 인사이트</li>
-          <li>SEO 키워드 제안</li>
-          <li>경쟁사 키워드 비교</li>
-        </ul>
-        <button class="p-btn outline">상담 신청</button>
-      </div>
+      <!-- 엔터프라이즈 -->
       <div class="p-card">
         <div class="p-label">엔터프라이즈</div>
-        <div class="p-price" style="font-size:2.4rem;">별도 문의</div>
-        <div class="p-desc">CS 부서 통째로</div>
+        <div class="p-price" style="font-size:2.4rem;">별도 협의</div>
+        <div class="p-desc">전담팀 운영</div>
         <ul class="p-features">
           <li>프로 전체 포함</li>
-          <li>전화 CS 일 50콜+</li>
+          <li>전담 상담사 배정</li>
           <li>환불/교환 전담 처리</li>
           <li>멀티 브랜드 관리</li>
           <li>API 연동</li>
@@ -1010,6 +955,8 @@
     <p class="pricing-note">부가세 별도 &middot; 14일 무료 체험 &middot; 언제든 해지 가능</p>
   </div>
 </section>
+
+<!-- 기존 5티어 별도 섹션 제거됨 — 메인 요금제에 통합 -->
 
 <!-- FAQ -->
 <section class="faq" id="faq">
@@ -1026,7 +973,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">스타터(9,900원)와 베이직(59,000원)의 차이는?</div>
-        <div class="faq-a">스타터는 AI가 답변을 만들고 셀러님이 확인 후 전송합니다. 베이직부터는 AI가 자동으로 전송하여, 24시간 손 놓고 맡길 수 있습니다.</div>
+        <div class="faq-a">스타터는 AI가 답변을 만들면 사장님이 확인 후 등록합니다. 베이직부터는 24시간 완전 자동이라 손 놓고 맡길 수 있어요. 전화 CS는 스탠다드(18만원)부터 포함됩니다.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">전화 CS는 어떤 사람이 하나요?</div>
@@ -1073,8 +1020,8 @@
 <!-- Final CTA -->
 <section class="final">
   <div class="wrap">
-    <h2>직원 뽑기 전에,<br>14일만 맡겨보세요</h2>
-    <p>구인 공고 올리기 전에, 리뷰천사가 대신 처리하는 걸 직접 확인하세요.</p>
+    <h2>오늘 밤 들어올 리뷰,<br>내일 아침엔 처리되어 있습니다</h2>
+    <p>사장님은 상품에 집중하세요. 리뷰와 CS는 리뷰천사가 합니다.</p>
     <button class="btn-big">14일 무료로 시작하기</button>
   </div>
 </section>
